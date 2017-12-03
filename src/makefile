@@ -7,10 +7,10 @@ LDIR =../lib
 
 LIBS=-lm
 
-_DEPS = queue.h
+_DEPS = queue.h hash.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = queue.o main.o
+_OBJ = queue.o main.o hash.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

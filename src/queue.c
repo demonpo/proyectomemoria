@@ -5,23 +5,59 @@
 
 typedef struct node {
     char val[20];
-    struct node *next;
+    struct node *next,*previus;
 } node_t;
 
 void enqueue(node_t **head, char s[]) {
+    node_t *current;
     node_t *new_node = malloc(sizeof(node_t));
     if (!new_node) return;
+
     
     strcpy(new_node->val, s);
     //new_node->val = val;
     new_node->next = *head;
+    if(*head==NULL){
+        printf("NULL\n");
+    }
+    else{
+        (*head) -> previus = new_node;
+        //printf("previus: %s\n", (*head) -> previus->val);
+    }
+    new_node->previus=NULL;
+    
+   
+   
+   
+   
+    
 
     *head = new_node;
 }
 
-char *dequeue(node_t **head) {
+void enqueue2(node_t **head, node_t *nuevo) {
+    node_t *new_node = nuevo;
+    if (!new_node) return;
+
+    new_node->next = *head;
+    if(*head==NULL){
+        printf("NULL\n");
+    }
+    else{
+        (*head) -> previus = new_node;
+        printf("previus: %s\n", (*head) -> previus->val);
+    }
+    new_node->previus=NULL;
+    
+   
+
+    *head = new_node;
+
+}
+
+const char *dequeue(node_t **head) {
     node_t *current, *prev = NULL;
-    char retval[20] = "";
+    static char retval[20] = "";
 
     if (*head == NULL) return "0";
 
@@ -107,6 +143,20 @@ void print_list(node_t *head) {
 
     while (current != NULL) {
         printf("%s\n", current->val);
+        
         current = current->next;
+       
     }
+   /*current=current->previus;
+   printf("%s\n", current->val);
+   while (current != NULL) {
+        printf("%s\n", current->val);
+        
+        current = current->previus;
+        
+    }*/
+
+
+
+
 }
